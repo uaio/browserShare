@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>浏览器分享11</title>
+	</head>
+	<body>
+	<div id="share">
+		<button data-app="sinaWeibo">微博</button>
+		<button data-app="weixin">微信</button>
+		<button data-app="weixinFriend">朋友圈</button>
+		<button data-app="QQ">qq</button>
+		<button data-app="QZone">qq空间</button>
+		<button data-app="">更多</button>
+	</div>
+
+	</body>
+	<script src="share.js?u=1"></script>
+	<script type="text/javascript">
+		var config = {
+			url:'http://azq.space',// 分享的网页链接
+			title:'个人博客',// 标题
+			desc:'desc',// 描述
+			img_url:'http://azq.space/favicon.png',// 图片
+			img_title:'王俊锋的个人博客',// 图片标题
+			from:'王俊锋的博客' // 来源
+		};
+	var ff = new browserShare(config);
+		ff.init("click",document.querySelectorAll("#share button"),function(){
+			alert(3333)
+			/*if(browsers.versions.isQQ){
+			 func
+			 }else if(browsers.versions.isWX){
+			 func
+			 }else if(browsers.versions.isWb){
+			 func
+			 }else {
+
+			 }*/
+		})
+	</script>
+</html>
