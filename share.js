@@ -6,7 +6,7 @@ var browsers = {
 			isQQBrowser : UA.split("MQQBrowser/").length==2,
 			isUcBrowser : UA.indexOf("UCBrowser/")>-1,
 			isWX : UA.toLowerCase().match(/MicroMessenger/i) == "micromessenger",
-			isQQ : UA.split("QQ").length>2,
+			isQQ : !this.isQQBrowser&&UA.split("QQ").length>2|| !this.isQQBrowser&&UA.split("QQ").length==3,
 			isWb : /Weibo/i.test(UA),
 		}
 	}(),
