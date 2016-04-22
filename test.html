@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="yes" name="apple-touch-fullscreen"/>
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title>寻找通向自然的路</title>
+    <script>
+        var dpr, rem, scale;
+        var docEl = document.documentElement;
+        var fontEl = document.createElement('style');
+        var metaEl = document.querySelector('meta[name="viewport"]');
+
+//        dpr = window.devicePixelRatio || 1;
+        dpr = 1;
+//        rem = docEl.clientWidth * dpr / 10;
+        rem = 64;
+        scale = docEl.clientWidth / 640;
+
+        // 设置viewport，进行缩放，达到高清效果
+        metaEl.setAttribute('content', 'width=' + "device-width" + ',initial-scale=' + scale + ',maximum-scale=' + scale + ', minimum-scale=' + scale + ',user-scalable=no');
+
+        // 设置data-dpr属性，留作的css hack之用
+        docEl.setAttribute('data-dpr', dpr);
+
+        // 动态写入样式
+        docEl.firstElementChild.appendChild(fontEl);
+        fontEl.innerHTML = 'html{font-size:' + rem + 'px!important;}';
+
+        // 给js调用的，某一dpr下rem和px之间的转换函数
+        window.rem2px = function(v) {
+            v = parseFloat(v);
+            return v * rem;
+        };
+        window.px2rem = function(v) {
+            v = parseFloat(v);
+            return v / rem;
+        };
+        window.dpr = dpr;
+        window.rem = rem;
+    </script>
+    <link rel="stylesheet" type="text/css" href="http://news.sohu.com/upload/earth_day/css/reset.css">
+    <link rel="stylesheet" href="http://news.sohu.com/upload/earth_day/css1/main.css">
+    <script src="http://news.sohu.com/upload/commonzzx/preload.js"></script>
+    <script src="http://news.sohu.com/upload/earth_day/js/func.js"></script>
+    <script src="http://news.sohu.com/upload/earth_day/js/base64img.js"></script>
+    <script src="http://news.sohu.com/upload/earth_day/js3/logic.js"></script>
+</head>
+<body>
+<audio style="position: absolute;z-index: -1;width: 1px;height: 1px;left: 0;top: 0" preload="preload" id="audio" loop src="http://news.sohu.com/upload/earth_day/bg.MP3"></audio>
+<audio style="position: absolute;z-index: -1;width: 1px;height: 1px;left: 0;top: 0" preload="preload" id="shakeAu"  src="http://news.sohu.com/upload/earth_day/p.mp3"></audio>
+<audio style="position: absolute;z-index: -1;width: 1px;height: 1px;left: 0;top: 0" preload="preload" id="downAu" loop src="http://news.sohu.com/upload/earth_day/f.MP3"></audio>
+<audio style="position: absolute;z-index: -1;width: 1px;height: 1px;left: 0;top: 0" preload="preload" id="clipAu"  src="http://news.sohu.com/upload/earth_day/c.MP3"></audio>
+<div class="page loading">
+    <div class="center pace-progress">
+        0%
+    </div>
+</div>
+<script>
+    loader.start();
+</script>
+<div class="page transition cover1">
+    <div class="text">
+        <img class="cover-text-1 transition noOp" src="http://news.sohu.com/upload/earth_day/images/cover-text-1.png" alt="">
+        <img class="cover-text-2 transition noOp" src="http://news.sohu.com/upload/earth_day/images/cover-text-2.png" alt="">
+        <img class="cover-text-3 transition noOp" src="http://news.sohu.com/upload/earth_day/images/cover-text-3.png" alt="">
+    </div>
+    <div class="cover-1-btn transition noOp"></div>
+</div>
+<div class="page transition cover2">
+    <img class="logo" src="http://news.sohu.com/upload/earth_day/images/logo.png" alt="">
+    <div class="text">
+        <img class="cover-text-3 transition noOp" src="http://news.sohu.com/upload/earth_day/images/cover_title.png" alt=""><br>
+        <img class="cover-text-4 transition noOp" src="http://news.sohu.com/upload/earth_day/images/me.png" alt=""><br>
+        <img class="cover-text-5 transition noOp" src="http://news.sohu.com/upload/earth_day/images/zuo.png" alt="">
+    </div>
+    <div class="cover-2-btn transition noOp"></div>
+</div>
+<div class="page transition view">
+    <div class="clip displayNone" id="aa">
+        <canvas class="cas" ></canvas>
+        <img class="clip-tip transition noOp" src="http://news.sohu.com/upload/earth_day/images/clip_tip.png" alt="">
+        <img class="page1can transition noOp" src="http://news.sohu.com/upload/earth_day/images/ican-1.png" alt="">
+    </div>
+    <div class="shake displayNone">
+        <div class="pages pagespic">
+            <img class="qy transition noOp" src="http://news.sohu.com/upload/earth_day/images/page2-qy.png" alt="">
+            <img class="page2-text transition noOp" src="http://news.sohu.com/upload/earth_day/images/page2-text.png" alt="">
+            <img class="shake-tip transition noOp" src="http://news.sohu.com/upload/earth_day/images/shake-tip.png" alt="">
+            <img class="shake-tip-text transition noOp" src="http://news.sohu.com/upload/earth_day/images/shake-tip-text.png" alt="">
+        </div>
+
+        <img class="page1can transition noOp" src="http://news.sohu.com/upload/earth_day/images/ican-1.png" alt="">
+    </div>
+    <div class="down displayNone">
+        <div class="page pagespic">
+            <img class="qy transition noOp" src="http://news.sohu.com/upload/earth_day/images/page3-qy.png" alt="">
+            <img class="page3-text transition noOp" src="http://news.sohu.com/upload/earth_day/images/page3-text.png" alt="">
+            <img class="down-tip transition noOp" src="http://news.sohu.com/upload/earth_day/images/down-tip.png" alt="">
+        </div>
+        <div class="page" id="down"></div>
+        <img class="page1can transition noOp" src="http://news.sohu.com/upload/earth_day/images/ican-1.png" alt="">
+    </div>
+</div>
+<div class="page transition end">
+    <img class="pagecan transition noOp" src="http://news.sohu.com/upload/earth_day/images/ican.png" alt="">
+    <img class=" transition anywhere noOp" src="http://news.sohu.com/upload/earth_day/images/anywhere.png" alt="">
+    <img class="endtext text1 transition noOp" src="http://news.sohu.com/upload/earth_day/images/text-1.png" alt="">
+    <img class="endtext text2 transition noOp" src="http://news.sohu.com/upload/earth_day/images/text-2.png" alt="">
+    <img class="endtext text3 transition noOp" src="http://news.sohu.com/upload/earth_day/images/text-3.png" alt="">
+    <img class="share transition noOp" src="http://news.sohu.com/upload/earth_day/images/share-text.png" alt="">
+    <div class="reset transition noOp"></div>
+    <img class="author transition noOp" src="http://news.sohu.com/upload/earth_day/images/bottom.png" alt="">
+    <img class="jump transition noOp" ontouchstart="http://3g.k.sohu.com/t/n129377113'" src="http://news.sohu.com/upload/earth_day/images/jumpsrc.jpg" alt="">
+</div>
+<div class="page sharepage transition-fast scale0">
+    <img class="share-tips" src="http://news.sohu.com/upload/earth_day/images/share-tips.png" alt="">
+    <img class="share-cover-text" src="http://news.sohu.com/upload/earth_day/images/share-cover-text.png" alt="">
+
+</div>
+<img src="http://zz.m.sohu.com/msohu_uv.gif?_once_=000192_zhengzhan" /></body>
+<script src="http://news.sohu.com/upload/commonzzx/tongji.js"></script>
+<script>
+    var  imgUrl= 'http://news.sohu.com/upload/earth_day/images/share.jpg';
+    var link = window.location.href;
+    var title1="寻找通向自然的路";
+    var content="被污染的地球向你求救";
+    appid = "";
+    gSound = '';
+    function shareFriend() {
+        WeixinJSBridge.invoke("sendAppMessage", {
+            appid: appid,
+            img_url: imgUrl,
+            img_width: "200",
+            img_height: "200",
+            link: link,
+            desc: content,
+            title: title1
+        }, function(b) {})
+    }
+
+    function shareTimeline() {
+        WeixinJSBridge.invoke("shareTimeline", {
+            appid: appid,
+            img_url: imgUrl,
+            img_width: "200",
+            img_height: "200",
+            link: link,
+            desc: title1,
+            title: content
+        }, function(b) {})
+    }
+
+    function shareWeibo() {
+        WeixinJSBridge.invoke("shareWeibo", {
+            content: content,
+            url: link
+        }, function(b) {})
+    }
+    document.addEventListener("WeixinJSBridgeReady", function onBridgeReady() {
+
+        WeixinJSBridge.on("menu:share:appmessage", function(b) {
+            shareFriend();
+        });
+        WeixinJSBridge.on("menu:share:timeline", function(b) {
+            shareTimeline();
+        });
+        WeixinJSBridge.on("menu:share:weibo", function(b) {
+            shareWeibo();
+        })
+        WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+            document.getElementById('audio').play();
+        });
+    }, false);
+</script>
+</html>
+                                    
